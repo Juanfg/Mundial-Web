@@ -14,7 +14,23 @@ module.exports = {
       { hid: 'description', name: 'description', content: pkg.description }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'stylesheet', href: '/css/material-kit.css?v=2.0.3' },
+      { rel: 'stylesheet', href: '/demo/demo.css' },
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons' },
+      { rel: 'stylesheet', href: 'https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css' }
+    ],
+    script: [
+      { src: '/js/core/jquery.min.js' },
+      { src: '/js/core/popper.min.js' },
+      { src: '/js/core/bootstrap-material-design.min.js' },
+      { src: '/js/plugins/moment.min.js' },
+      // { src: '/js/plugins/bootstrap-tagsinput.js' },
+      // { src: '/js/plugins/jasny-bootstrap.min.js' },
+      // { src: '/js/plugins/jquery.flexisel.js' },
+      { src: '/js/plugins/bootstrap-datetimepicker.js' },
+      { src: '/js/plugins/nouislider.min.js' },
+      { src: '/js/material-kit.js?v=2.0.3' }
     ]
   },
 
