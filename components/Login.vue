@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-md-4 ml-auto mr-auto">
                     <div class="card card-signup">
-                        <form class="form" @submit="login()">
+                        <form class="form" @submit.prevent="login()">
                             <div class="card-header card-header-primary text-center">
                                 <h4>Log In</h4>
                             </div>

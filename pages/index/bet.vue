@@ -1,13 +1,13 @@
 <template>
     <div class="container">
         <form class="form-inline col-md-12" style="text-align: center;" v-for="bet in bets">
-            <img :src="bet.team_a_photo" width="50" height="50" alt="Foto" class="col-md-2 rounded-circle img-fluid">
+            <img :src="bet.team_a_photo" width="50" height="50" alt="Foto" class="col-md-1 rounded-circle img-fluid">
             <label align="center" for="teamA" style="text-align: center;"  class="col-sm-2 col-form-label">{{ bet.team_a_name }}</label>
             <input type="number" :disabled="!bet.match.active" style="text-align: center;" class="form-control col-sm-1" id="teamA" v-model="bet.team_a_score"> 
             &nbsp --- &nbsp
             <input type="number" :disabled="!bet.match.active" style="text-align: center;" class="form-control col-sm-1" id="teamB" v-model="bet.team_b_score">
             <label for="teamB" align="center" class="col-md-2 col-form-label">{{ bet.team_b_name }}</label>
-            <img align="center" :src="bet.team_b_photo" width="50" height="50" alt="Foto" class="col-md-2 rounded-circle img-fluid">
+            <img align="center" :src="bet.team_b_photo" width="50" height="50" alt="Foto" class="col-md-1 rounded-circle img-fluid">
             <div v-if="!bet.match.active">
                 [{{ bet.match.team_a_score }} --- {{ bet.match.team_b_score }}]
             </div>
