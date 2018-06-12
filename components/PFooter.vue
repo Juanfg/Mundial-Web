@@ -5,7 +5,7 @@
                 <nav class="float-left">
                     <ul>
                     <li>
-                        Tanda Mundial 2018
+                        Quiniela Mundial 2018
                     </li>
                     </ul>
                 </nav>

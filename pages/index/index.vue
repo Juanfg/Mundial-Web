@@ -20,6 +20,8 @@
 </template>
 
 <script>
+    import axios from 'axios'
+
     export default {
         data() {
             return {
@@ -31,7 +33,14 @@
         },
         methods: {
             getResults() {
-                this.orderResults()
+                axios.get(process.env.apiUrl + '/users')
+                    .then((users) => {
+                        this.persons = users.data
+                        this.orderResults()                
+                    })
+                    .catch((err) => {
+                        console.log(err)
+                    })
             },
             orderResults() {
                 let lastResult = -1

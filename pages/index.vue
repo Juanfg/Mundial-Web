@@ -4,7 +4,8 @@
     <p-header></p-header>
     <div class="main main-raised">
       <div class="section section-basic">
-        <router-view></router-view>
+        <router-view v-if="$store.state.isUserLoggedIn"></router-view>
+        <login v-else></login>
       </div>
     </div>
     <p-footer></p-footer>
@@ -15,12 +16,14 @@
 import PNavbar from '~/components/PNavbar.vue'
 import PHeader from '~/components/PHeader.vue'
 import PFooter from '~/components/PFooter.vue'
+import Login from '~/components/Login.vue'
 
 export default {
   components: {
     PNavbar,
     PHeader,
-    PFooter
+    PFooter,
+    Login
   }
 }
 </script>
