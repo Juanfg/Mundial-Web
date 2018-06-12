@@ -18,6 +18,7 @@
 
 <script>
     import axios from 'axios'
+    const alertService = require('~/static/js/alertService.js')
 
     export default {
         data() {
@@ -50,7 +51,10 @@
                             });
                         }
                         this.bets = bets.data
-                    });
+                    })
+                    .catch(err => {
+                        alertService.error(err.response.data.message)
+                    })
             },
             async saveResults() {
                 for (let i = 0; i < this.bets.length; i++) {
@@ -64,11 +68,11 @@
                             "Authorization": this.$store.state.token
                         }
                     })
-                    .then(async bet => {
-                        await console.log(bet)
+                    .then(bet => {
+                        alertService.success("Tus resultados fueron guardados.")
                     })
                     .catch(err => {
-                        console.log(err)
+                        alertService.error(err.response.data.message)
                     })
                 }
             }

@@ -35,7 +35,8 @@ module.exports = {
       // { src: '/js/plugins/jquery.flexisel.js' },
       { src: '/js/plugins/bootstrap-datetimepicker.js' },
       { src: '/js/plugins/nouislider.min.js' },
-      { src: '/js/material-kit.js?v=2.0.3' }
+      { src: '/js/material-kit.js?v=2.0.3' },
+      { src: '/js/alertService.js' }
     ]
   },
 

@@ -39,6 +39,7 @@
 
 <script>
     import axios from 'axios'
+    const alertService = require('~/static/js/alertService.js')
 
     export default {
         data() {
@@ -59,7 +60,7 @@
                         this.$store.dispatch('setUserId', user.data.token.user)
                     })
                     .catch(err => {
-                        console.log(err);
+                        alertService.error("Asegurate de escribir bien tu email o contraseña")
                     })
             }
         }

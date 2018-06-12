@@ -3,19 +3,19 @@
         <div class="title">
             <h2>{{ title }}</h2>
         </div>
-        <table class="table">
+        <table class="table table-striped">
             <thead>
                 <tr>
-                    <td>Equipo A</td>
-                    <td>Marcador</td>
-                    <td>Equipo B</td>
+                    <th style="text-align: center;">Equipo A</th>
+                    <th style="text-align: center;">Marcador</th>
+                    <th style="text-align: center;">Equipo B</th>
                 </tr>
             </thead>
             <tbody>
                 <tr v-for="bet in bets" v-if="!bet.match.active">
-                    <td>{{ bet.team_a_name }}</td>
-                    <td>{{ bet.team_a_score }} --- {{ bet.team_b_score }}</td>
-                    <td>{{ bet.team_b_name }}</td>
+                    <td style="text-align: center;">{{ bet.team_a_name }}</td>
+                    <td style="text-align: center;">{{ bet.team_a_score }} --- {{ bet.team_b_score }}</td>
+                    <td style="text-align: center;">{{ bet.team_b_name }}</td>
                 </tr>
             </tbody>
         </table>

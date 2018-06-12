@@ -1,6 +1,8 @@
 <template>
      <nav class="navbar navbar-transparent navbar-color-on-scroll fixed-top navbar-expand-lg" color-on-scroll="100" id="sectionsNav">
         <div class="container">
+        <a class="navbar-brand" href="/">
+          Quiniela </a>
         <div class="navbar-translate">
             <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -11,7 +13,7 @@
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item" v-if="$store.state.isUserLoggedIn">
-                    <a class="nav-link" href="/">
+                    <a class="nav-link" href="/people">
                     <i class="material-icons">bar_chart</i> Stands
                     </a>
                 </li>
@@ -20,24 +22,17 @@
                     <i class="material-icons">create</i> Mis pronosticos
                     </a>
                 </li>
-                <li class="nav-item" v-if="$store.state.isUserLoggedIn">
-                    <a class="nav-link" href="/people">
-                    <i class="material-icons">people</i> Participantes
-                    </a>
-                </li>
                 <li class="dropdown nav-item" v-if="$store.state.isUserLoggedIn">
                     <a href="javascript:void(0)" class="dropdown-toggle nav-link" data-toggle="dropdown">
                     <i class="material-icons">person</i> Perfil
                     </a>
                     <div class="dropdown-menu dropdown-with-icons">
-                    <a href="#" class="dropdown-item">
+                    <a href="/updateProfile" class="dropdown-item">
                         <i class="material-icons">update</i> Actualizar perfil
                     </a>
-                    <form @submit="logout()">
-                        <button type="submit" class="dropdown-item">
-                            <i class="material-icons">exit_to_app</i> Salir</a>
-                        </button>
-                    </form>
+                    <a @click="logout()" class="dropdown-item">
+                        <i class="material-icons">exit_to_app</i> Salir</a>
+                    </a>
                     </div>
                 </li>
                 <li class="nav-item" v-else>
@@ -56,6 +51,7 @@
         methods: {
             logout() {
                 localStorage.clear()
+                this.$router.go('/')
             }
         }
     }

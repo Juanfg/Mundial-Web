@@ -1,21 +1,6 @@
 <template>
-    <div class="container-fluid">
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Lugar</th>
-                    <th>Nombre</th>
-                    <th>Puntos</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="person in persons">
-                    <td>{{ person.place }}</td>
-                    <td>{{ person.name }}</td>
-                    <td>{{ person.points }}</td>
-                </tr>
-            </tbody>
-        </table>
+    <div class="container">
+        <h1 class="title">Bienvenido {{ username }} ({{ useremail }})</h1>
     </div>
 </template>
 
@@ -25,33 +10,23 @@
     export default {
         data() {
             return {
-                persons: []
+                username: "",
+                useremail: "",
             }
         },
         created() {
-            this.getResults()
+            this.getUser()
         },
         methods: {
-            getResults() {
-                axios.get(process.env.apiUrl + '/users')
-                    .then((users) => {
-                        this.persons = users.data
-                        this.orderResults()                
+            getUser() {
+                axios.get(process.env.apiUrl + '/users/' + this.$store.state.userId)
+                    .then(user => {
+                        this.username = user.data.name
+                        this.useremail = user.data.email
+                    }).
+                    catch(err => {
+                        alertService.error(err.response.data.message)                        
                     })
-                    .catch((err) => {
-                        console.log(err)
-                    })
-            },
-            orderResults() {
-                let lastResult = -1
-                let place = 0
-                for (let i = 0; i < this.persons.length; i++) {
-                    if (lastResult !== this.persons[i].points) {
-                        place++
-                    }
-                    this.persons[i].place = place
-                    lastResult = this.persons[i].points
-                }
             }
         }
     }
