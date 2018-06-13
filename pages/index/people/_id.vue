@@ -13,9 +13,9 @@
             </thead>
             <tbody>
                 <tr v-for="bet in bets" v-if="!bet.match.active">
-                    <td style="text-align: center;">{{ bet.team_a_name }}</td>
+                    <td style="text-align: center;">{{ bet.match.team_a.name }}</td>
                     <td style="text-align: center;">{{ bet.team_a_score }} --- {{ bet.team_b_score }}</td>
-                    <td style="text-align: center;">{{ bet.team_b_name }}</td>
+                    <td style="text-align: center;">{{ bet.match.team_b.name }}</td>
                 </tr>
             </tbody>
         </table>
@@ -48,27 +48,13 @@
             },
             getBets() {
                 console.log(this.$route.params.id)
-                axios.get(process.env.apiUrl + '/bets/user/' + this.$route.params.id, {
+                axios.get(process.env.apiUrl + '/betsWithMatches/user/' + this.$route.params.id, {
                     headers: {
                         "Authorization": this.$store.state.token
                     }
                 })
-                .then(async bets => {
-                    for (let i = 0; i < bets.data.length; i++) {
-                        await axios.get(process.env.apiUrl + '/matches/' + bets.data[i].match_id, {
-                            headers: {
-                                "Authorization": this.$store.state.token
-                            }
-                        })
-                        .then(async match => {
-                            bets.data[i].team_a_name = match.data.teamA.name
-                            bets.data[i].team_b_name = match.data.teamB.name
-                            bets.data[i].team_a_photo = match.data.teamA.photo_path
-                            bets.data[i].team_b_photo = match.data.teamB.photo_path
-                        });
-                    }
+                .then(bets => {
                     this.bets = bets.data
-                    console.log(bets.data)
                 })
                 .catch(err => {
                     console.log(err)
