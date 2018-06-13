@@ -43,24 +43,23 @@
                     alertService.error(err.response.data.message)
                 })
             },
-            async saveResults() {
-                for (let i = 0; i < this.bets.length; i++) {
-                    let putData = {
-                        team_a_score: this.bets[i].team_a_score,
-                        team_b_score: this.bets[i].team_b_score
-                    }
-                    await axios.put(process.env.apiUrl + '/bets/' + this.bets[i].id, putData, {
-                        headers: {
-                            "Authorization": this.$store.state.token
-                        }
-                    })
-                    .then(bet => {
-                        alertService.success("Tus resultados fueron guardados.")
-                    })
-                    .catch(err => {
-                        alertService.error(err.response.data.message)
-                    })
+            saveResults() {
+                let putData = {
+                    bets: this.bets
                 }
+
+                axios.put(process.env.apiUrl + '/updateAllBets', putData, {
+                    headers: {
+                        "Authorization": this.$store.state.token
+                    }
+                })
+                .then(() => {
+                    console.log(putData)
+                    alertService.success("Tus resultados fueron guardados.")
+                })
+                .catch(err => {
+                    alertService.error(err.response.data.message)
+                })
             }
         }
     }
