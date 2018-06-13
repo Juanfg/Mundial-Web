@@ -8,9 +8,10 @@
             <input type="number" :disabled="!bet.match.active" style="text-align: center;" class="form-control col-sm-1" id="teamB" v-model="bet.team_b_score">
             <label for="teamB" align="center" class="col-md-2 col-form-label">{{ bet.match.team_b.name }}</label>
             <img align="center" :src="bet.match.team_b.photo_path" width="50" height="50" alt="Foto" class="col-md-1 rounded-circle img-fluid">
+            |&nbsp&nbsp&nbsp
             <div v-if="!bet.match.active">
-                [{{ bet.match.team_a_score }} --- {{ bet.match.team_b_score }}]
-            </div>
+                <b>Resultado Oficial: </b>[{{ bet.match.team_a_score }} --- {{ bet.match.team_b_score }}]
+            </div>            
         </form>        
         <button @click="saveResults()" class="col-md-11 btn btn-success">Salvar</button>
     </div>

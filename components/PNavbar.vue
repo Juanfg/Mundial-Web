@@ -1,5 +1,5 @@
 <template>
-     <nav class="navbar navbar-transparent navbar-color-on-scroll fixed-top navbar-expand-lg" color-on-scroll="100" id="sectionsNav">
+     <nav class="navbar bg-primary navbar-color-on-scroll fixed-top navbar-expand-lg" color-on-scroll="100" id="sectionsNav">
         <div class="container">
         <a class="navbar-brand" href="/">
           Quiniela </a>
@@ -12,6 +12,11 @@
         </div>
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a @click="changeGroupTitle()" class="nav-link" data-placement="bottom" data-toggle="popover" title="Grupos" rel="popover">
+                    <i class="material-icons">group_work</i> {{ groupTitle }}
+                    </a>
+                </li>
                 <li class="nav-item" v-if="$store.state.isUserLoggedIn">
                     <a class="nav-link" href="/people">
                     <i class="material-icons">bar_chart</i> Stands
@@ -46,13 +51,46 @@
     </nav>
 </template>
 
+<style>
+.popover{
+    max-width: 100%;
+}
+</style>
+
 <script>
+    const groupPopOverVisible = false;
     export default {
+        data() {
+            return {
+                groupTitle: ""
+            }
+        },
         methods: {
             logout() {
                 localStorage.clear()
                 this.$router.go('/')
+            },
+            changeGroupTitle() {
+                if (this.groupPopOverVisible) {
+                    this.groupTitle = "Mostrar Grupos"
+                    this.groupPopOverVisible = false                    
+                }
+                else {
+                    this.groupTitle = "Quitar Grupos"
+                    this.groupPopOverVisible = true
+                }
             }
+        },
+        created() {
+            $(function () {
+                $('[data-toggle="popover"]').popover({
+                    html: true,
+                    content: function () {
+                        return `<img src="http://media.ambito.com/diario/2017/1201/imagenes/not_905207_01_132319.jpg" width="500" heigth="500"/>`;
+                    }
+                });
+            })
+            this.groupTitle = "Mostrar Grupos"
         }
     }
 </script>
